@@ -1,0 +1,31 @@
+name: Builds
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-darwin:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools
+          
+      - name: Checkout depot_tools
+        run: |
+          git clone https://github.com/google/angle
+          # git clone https://chromium.googlesource.com/angle/angle
+      
+      - name: Build
+        run: |
+          export PATH="$(pwd)/depot_tools:$PATH"
+          cd angle
+          python scripts/bootstrap.py
+          gclient sync
+          git checkout master
+          gn gen out/Release
+          gn args out/Release --list=is_debug --args="is_debug=false"
+          autoninja -C out/Release
