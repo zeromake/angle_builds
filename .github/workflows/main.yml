@@ -28,9 +28,9 @@ jobs:
           cd ..
           mkdir angle_darwin
           mkdir angle_darwin/lib
-          cp -f angle/out/Release/libEGL.dylib angle_darwin/lib/
-          cp -f angle/out/Release/libGLESv1_CM.dylib angle_darwin/lib/
-          cp -f angle/out/Release/libGLESv2.dylib angle_darwin/lib/
+          # cp -f angle/out/Release/libEGL.dylib angle_darwin/lib/
+          # cp -f angle/out/Release/libGLESv1_CM.dylib angle_darwin/lib/
+          # cp -f angle/out/Release/libGLESv2.dylib angle_darwin/lib/
           cp -rf angle/include angle_darwin/
           find angle_darwin -name ".clang-format" -delete
           find angle_darwin -name "*.md" -delete
