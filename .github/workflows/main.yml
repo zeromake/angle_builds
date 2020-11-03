@@ -1,20 +1,20 @@
 name: Builds
 
-on:
+on: 
   workflow_dispatch
 
 jobs:
-  build-darwin:
+  build-darwin-x64:
     runs-on: macOS-latest
     steps:
       - name: Checkout depot_tools
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-          
+
       - name: Checkout sources
         run: |
           git clone https://github.com/google/angle
-      
+
       - name: Build
         run: |
           export PATH="$(pwd)/depot_tools:$PATH"
@@ -23,19 +23,58 @@ jobs:
           gclient sync
           git checkout master
           gn gen out/Release
-          gn args out/Release --list=is_debug --args="is_debug=false"
-          # autoninja -C out/Release
+          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\""
+          autoninja -C out/Release
           cd ..
-          mkdir angle_darwin
-          mkdir angle_darwin/lib
-          # cp -f angle/out/Release/libEGL.dylib angle_darwin/lib/
-          # cp -f angle/out/Release/libGLESv1_CM.dylib angle_darwin/lib/
-          # cp -f angle/out/Release/libGLESv2.dylib angle_darwin/lib/
-          cp -rf angle/include angle_darwin/
-          find angle_darwin -name ".clang-format" -delete
-          find angle_darwin -name "*.md" -delete
-      -   name: Upload Artifact
-          uses: actions/upload-artifact@v2
-          with:
-            name: angle_darwin
-            path: angle_darwin
+          mkdir angle-darwin-x64
+          mkdir angle-darwin-x64/lib
+          cp -f angle/out/Release/libEGL.dylib angle-darwin-x64/lib/
+          cp -f angle/out/Release/libGLESv1_CM.dylib angle-darwin-x64/lib/
+          cp -f angle/out/Release/libGLESv2.dylib angle-darwin-x64/lib/
+          cp -rf angle/include angle-darwin-x64/
+          find angle-darwin-x64 -name ".clang-format" -delete
+          find angle-darwin-x64 -name "*.md" -delete
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-darwin-x64
+          path: angle-darwin-x64
+
+  build-linux-x64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle
+
+      - name: Build
+        run: |
+          export PATH="$(pwd)/depot_tools:$PATH"
+          cd angle
+          python scripts/bootstrap.py
+          gclient sync
+          git checkout master
+          gn gen out/Release
+          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\""
+          autoninja -C out/Release
+          cd ..
+          mkdir angle-linux-x64
+          mkdir angle-linux-x64/lib
+          cp -f angle/out/Release/libEGL.so angle-linux-x64/lib/
+          cp -f angle/out/Release/libGLESv1_CM.so angle-linux-x64/lib/
+          cp -f angle/out/Release/libGLESv2.so angle-linux-x64/lib/
+          cp -rf angle/include angle-linux-x64/
+          find angle-linux-x64 -name ".clang-format" -delete
+          find angle-linux-x64 -name "*.md" -delete
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-linux-x64
+          path: angle-linux-x64
+
