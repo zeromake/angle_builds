@@ -1,0 +1,10 @@
+name: SSH Windows
+on: 
+  workflow_dispatch
+
+jobs:
+  ssh-windows:
+    runs-on: windows-latest
+    steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
