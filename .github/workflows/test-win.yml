@@ -10,7 +10,7 @@ jobs:
       - name: Checkout depot_tools
         shell: bash
         run: |
-          wget https://storage.googleapis.com/chrome-infra/depot_tools.zip
+          curl -ksS https://storage.googleapis.com/chrome-infra/depot_tools.zip > depot_tools.zip
           mkdir depot_tools
           unzip depot_tools.zip -d depot_tools
           rm depot_tools.zip
