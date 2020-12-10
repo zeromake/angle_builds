@@ -23,6 +23,34 @@ jobs:
           set PATH=%cd%\depot_tools;%PATH%
           set DEPOT_TOOLS_WIN_TOOLCHAIN=0
           gclient
+      - name: Bootstrap
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          python scripts/bootstrap.py
+      - name: Sync
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          gclient sync
+      - name: Gen
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          gn gen out/Release
+      - name: Set Args
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
       - name: Build
         shell: cmd
         run: |
@@ -30,14 +58,11 @@ jobs:
           set DEPOT_TOOLS_WIN_TOOLCHAIN=0
           set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
-          python scripts/bootstrap.py
-          gclient sync
-          gn gen out/Release
-          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
           autoninja -C out/Release
       - name: Pack
         shell: bash
         run: |
+          dir out\Release
           mkdir angle-windows-x64-d3d11
           mkdir angle-windows-x64-d3d11/lib
           cp -f out/Release/libEGL.dll angle-windows-x64-d3d11/lib/
