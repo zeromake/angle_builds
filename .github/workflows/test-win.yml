@@ -12,8 +12,8 @@ jobs:
         run: |
           curl -ksS https://storage.googleapis.com/chrome-infra/depot_tools.zip > depot_tools.zip
           mkdir depot_tools
-          unzip depot_tools.zip -d depot_tools
-          rm depot_tools.zip
+          unzip -q depot_tools.zip -d depot_tools
+          rm -f depot_tools.zip
       - name: Checkout sources
         run: |
           git clone https://github.com/google/angle
