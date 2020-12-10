@@ -1,0 +1,35 @@
+name: test-win
+
+on: 
+  workflow_dispatch
+
+jobs:
+  build-windows-x64-d3d11:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout depot_tools
+        shell: bash
+        run: |
+          wget https://storage.googleapis.com/chrome-infra/depot_tools.zip
+          mkdir depot_tools
+          unzip depot_tools.zip -d depot_tools
+          rm depot_tools.zip
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle
+      - name: Pack
+        shell: bash
+        run: |
+          mkdir angle-windows-x64-d3d11
+          mkdir angle-windows-x64-d3d11/lib
+          cp -f angle/out/Release/libEGL.so angle-windows-x64-d3d11/lib/
+          cp -f angle/out/Release/libGLESv1_CM.so angle-windows-x64-d3d11/lib/
+          cp -f angle/out/Release/libGLESv2.so angle-windows-x64-d3d11/lib/
+          cp -rf angle/include angle-windows-x64-d3d11/
+          find angle-windows-x64-d3d11 -name ".clang-format" -delete
+          find angle-windows-x64-d3d11 -name "*.md" -delete
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-windows-x64-d3d11
+          path: angle-windows-x64-d3d11
