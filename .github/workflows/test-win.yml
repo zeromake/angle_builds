@@ -7,6 +7,9 @@ jobs:
   build-windows-x64-d3d11:
     runs-on: windows-latest
     steps:
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle .
       - name: Checkout depot_tools
         shell: bash
         run: |
@@ -14,9 +17,6 @@ jobs:
           mkdir depot_tools
           unzip -q -o depot_tools.zip -d depot_tools
           rm -f depot_tools.zip
-      - name: Checkout sources
-        run: |
-          git clone https://github.com/google/angle
       - name: Build
         shell: cmd
         run: |
@@ -25,25 +25,23 @@ jobs:
           set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
           gclient
-          cd angle
           python scripts/bootstrap.py
           gclient sync
           gn gen out/Release
           gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
           autoninja -C out/Release
-          cd ..
       - name: Pack
         shell: bash
         run: |
           mkdir angle-windows-x64-d3d11
           mkdir angle-windows-x64-d3d11/lib
-          cp -f angle/out/Release/libEGL.dll angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libEGL.lib angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv1_CM.dll angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv1_CM.lib angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv2.dll angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv2.lib angle-windows-x64-d3d11/lib/
-          cp -rf angle/include angle-windows-x64-d3d11/
+          cp -f out/Release/libEGL.dll angle-windows-x64-d3d11/lib/
+          cp -f out/Release/libEGL.lib angle-windows-x64-d3d11/lib/
+          cp -f out/Release/libGLESv1_CM.dll angle-windows-x64-d3d11/lib/
+          cp -f out/Release/libGLESv1_CM.lib angle-windows-x64-d3d11/lib/
+          cp -f out/Release/libGLESv2.dll angle-windows-x64-d3d11/lib/
+          cp -f out/Release/libGLESv2.lib angle-windows-x64-d3d11/lib/
+          cp -rf include angle-windows-x64-d3d11/
           find angle-windows-x64-d3d11 -name ".clang-format" -delete
           find angle-windows-x64-d3d11 -name "*.md" -delete
       - name: Upload Artifact
