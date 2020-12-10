@@ -17,14 +17,24 @@ jobs:
       - name: Checkout sources
         run: |
           git clone https://github.com/google/angle
+#       - name: Build
+#         shell: cmd
+#         run: |
+#           set PATH="%~dp0\depot_tools;%PATH%"
+#           set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+#           cd angle
+#           python scripts/bootstrap.py
+#           gclient sync
+#           git checkout master
+#           gn gen out/Release
+#           gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
+#           autoninja -C out/Release
+#           cd ..
       - name: Pack
         shell: bash
         run: |
           mkdir angle-windows-x64-d3d11
           mkdir angle-windows-x64-d3d11/lib
-          cp -f angle/out/Release/libEGL.so angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv1_CM.so angle-windows-x64-d3d11/lib/
-          cp -f angle/out/Release/libGLESv2.so angle-windows-x64-d3d11/lib/
           cp -rf angle/include angle-windows-x64-d3d11/
           find angle-windows-x64-d3d11 -name ".clang-format" -delete
           find angle-windows-x64-d3d11 -name "*.md" -delete
