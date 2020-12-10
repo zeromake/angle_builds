@@ -18,6 +18,7 @@ jobs:
           unzip -q -o depot_tools.zip -d depot_tools
           rm -f depot_tools.zip
       - name: Build
+        shell: cmd
         run: |
           set PATH=%cd%\depot_tools;%PATH%
           set DEPOT_TOOLS_WIN_TOOLCHAIN=0
