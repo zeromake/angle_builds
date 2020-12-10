@@ -23,7 +23,7 @@ jobs:
           gclient sync
           git checkout master
           gn gen out/Release
-          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\""
+          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
           autoninja -C out/Release
           cd ..
           mkdir angle-darwin-x64
@@ -60,7 +60,7 @@ jobs:
           gclient sync
           git checkout master
           gn gen out/Release
-          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\""
+          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
           autoninja -C out/Release
           cd ..
           mkdir angle-linux-x64
