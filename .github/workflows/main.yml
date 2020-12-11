@@ -70,4 +70,200 @@ jobs:
           name: angle-linux-x64
           path: angle-linux-x64
 
+  build-windows-x64:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle .
+      - name: Fetch depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - name: Build
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          cmd /c gclient
+          cmd /c python scripts/bootstrap.py
+          cmd /c gclient sync
+          cmd /c gn gen out/Release
+          cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
+          cmd /c autoninja -C out/Release
+      - name: Pack
+        shell: bash
+        run: |
+          mkdir angle-windows-x64
+          mkdir angle-windows-x64/lib
+          cp -f out/Release/libEGL.dll angle-windows-x64/lib/
+          cp -f out/Release/libEGL.dll.lib angle-windows-x64/lib/libEGL.lib
+          cp -f out/Release/libGLESv1_CM.dll angle-windows-x64/lib/
+          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x64/lib/libGLESv1_CM.lib
+          cp -f out/Release/libGLESv2.dll angle-windows-x64/lib/
+          cp -f out/Release/libGLESv2.dll.lib angle-windows-x64/lib/libGLESv2.lib
+          cp -f out/Release/api-*.dll angle-windows-x64/lib/
+          cp -f out/Release/d3d*.dll angle-windows-x64/lib/
+          cp -f out/Release/msvcp140.dll angle-windows-x64/lib/
+          cp -f out/Release/ucrtbase.dll angle-windows-x64/lib/
+          cp -f out/Release/vccorlib140.dll angle-windows-x64/lib/
+          cp -f out/Release/vcruntime140.dll angle-windows-x64/lib/
+          cp -f out/Release/vcruntime140_1.dll angle-windows-x64/lib/
+          cp -rf include angle-windows-x64/
+          find angle-windows-x64 -name ".clang-format" -delete
+          find angle-windows-x64 -name "*.md" -delete
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-windows-x64
+          path: angle-windows-x64
+
+  build-windows-x86:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle .
+      - name: Fetch depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - name: Build
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          cmd /c gclient
+          cmd /c python scripts/bootstrap.py
+          cmd /c gclient sync
+          cmd /c gn gen out/Release
+          cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x86\" build_angle_deqp_tests=false"
+          cmd /c autoninja -C out/Release
+      - name: Pack
+        shell: bash
+        run: |
+          mkdir angle-windows-x86
+          mkdir angle-windows-x86/lib
+          cp -f out/Release/libEGL.dll angle-windows-x86/lib/
+          cp -f out/Release/libEGL.dll.lib angle-windows-x86/lib/libEGL.lib
+          cp -f out/Release/libGLESv1_CM.dll angle-windows-x86/lib/
+          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x86/lib/libGLESv1_CM.lib
+          cp -f out/Release/libGLESv2.dll angle-windows-x86/lib/
+          cp -f out/Release/libGLESv2.dll.lib angle-windows-x86/lib/libGLESv2.lib
+          cp -f out/Release/api-*.dll angle-windows-x86/lib/
+          cp -f out/Release/d3d*.dll angle-windows-x86/lib/
+          cp -f out/Release/msvcp140.dll angle-windows-x86/lib/
+          cp -f out/Release/ucrtbase.dll angle-windows-x86/lib/
+          cp -f out/Release/vccorlib140.dll angle-windows-x86/lib/
+          cp -f out/Release/vcruntime140.dll angle-windows-x86/lib/
+          cp -f out/Release/vcruntime140_1.dll angle-windows-x86/lib/
+          cp -rf include angle-windows-x86/
+          find angle-windows-x86 -name ".clang-format" -delete
+          find angle-windows-x86 -name "*.md" -delete
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-windows-x86
+          path: angle-windows-x86
+
+  build-winuwp-x64:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle .
+      - name: Fetch depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - name: Build
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          cmd /c gclient
+          cmd /c python scripts/bootstrap.py
+          cmd /c gclient sync
+          cmd /c gn gen out/Release
+          cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" target_os=\"winuwp\" build_angle_deqp_tests=false"
+          cmd /c autoninja -C out/Release
+      - name: Pack
+        shell: bash
+        run: |
+          mkdir angle-winuwp-x64
+          mkdir angle-winuwp-x64/lib
+          cp -f out/Release/libEGL.dll angle-winuwp-x64/lib/
+          cp -f out/Release/libEGL.dll.lib angle-winuwp-x64/lib/libEGL.lib
+          cp -f out/Release/libGLESv1_CM.dll angle-winuwp-x64/lib/
+          cp -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x64/lib/libGLESv1_CM.lib
+          cp -f out/Release/libGLESv2.dll angle-winuwp-x64/lib/
+          cp -f out/Release/libGLESv2.dll.lib angle-winuwp-x64/lib/libGLESv2.lib
+          cp -f out/Release/api-*.dll angle-winuwp-x64/lib/
+          cp -f out/Release/d3d*.dll angle-winuwp-x64/lib/
+          cp -f out/Release/msvcp140.dll angle-winuwp-x64/lib/
+          cp -f out/Release/ucrtbase.dll angle-winuwp-x64/lib/
+          cp -f out/Release/vccorlib140.dll angle-winuwp-x64/lib/
+          cp -f out/Release/vcruntime140.dll angle-winuwp-x64/lib/
+          cp -f out/Release/vcruntime140_1.dll angle-winuwp-x64/lib/
+          cp -rf include angle-winuwp-x64/
+          find angle-winuwp-x64 -name ".clang-format" -delete
+          find angle-winuwp-x64 -name "*.md" -delete
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-winuwp-x64
+          path: angle-winuwp-x64
+
+  build-winuwp-x86:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        run: |
+          git clone https://github.com/google/angle .
+      - name: Fetch depot_tools
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - name: Build
+        shell: cmd
+        run: |
+          set PATH=%cd%\depot_tools;%PATH%
+          set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+          set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
+          set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
+          cmd /c gclient
+          cmd /c python scripts/bootstrap.py
+          cmd /c gclient sync
+          cmd /c gn gen out/Release
+          cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x86\" target_os=\"winuwp\" build_angle_deqp_tests=false"
+          cmd /c autoninja -C out/Release
+      - name: Pack
+        shell: bash
+        run: |
+          mkdir angle-winuwp-x86
+          mkdir angle-winuwp-x86/lib
+          cp -f out/Release/libEGL.dll angle-winuwp-x86/lib/
+          cp -f out/Release/libEGL.dll.lib angle-winuwp-x86/lib/libEGL.lib
+          cp -f out/Release/libGLESv1_CM.dll angle-winuwp-x86/lib/
+          cp -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x86/lib/libGLESv1_CM.lib
+          cp -f out/Release/libGLESv2.dll angle-winuwp-x86/lib/
+          cp -f out/Release/libGLESv2.dll.lib angle-winuwp-x86/lib/libGLESv2.lib
+          cp -f out/Release/api-*.dll angle-winuwp-x86/lib/
+          cp -f out/Release/d3d*.dll angle-winuwp-x86/lib/
+          cp -f out/Release/msvcp140.dll angle-winuwp-x86/lib/
+          cp -f out/Release/ucrtbase.dll angle-winuwp-x86/lib/
+          cp -f out/Release/vccorlib140.dll angle-winuwp-x86/lib/
+          cp -f out/Release/vcruntime140.dll angle-winuwp-x86/lib/
+          cp -f out/Release/vcruntime140_1.dll angle-winuwp-x86/lib/
+          cp -rf include angle-winuwp-x86/
+          find angle-winuwp-x86 -name ".clang-format" -delete
+          find angle-winuwp-x86 -name "*.md" -delete
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: angle-winuwp-x86
+          path: angle-winuwp-x86
+
 
