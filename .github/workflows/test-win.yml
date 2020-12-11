@@ -29,6 +29,8 @@ jobs:
           cmd /c gclient sync
           cmd /c gn gen out/Release
           cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
+          echo %PATH%
+          dir %cd%\depot_tools
           cmd /c autoninja -C out/Release
       - name: Pack
         shell: bash
