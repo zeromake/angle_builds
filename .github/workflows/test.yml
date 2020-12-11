@@ -1,10 +1,10 @@
-name: test-win
+name: test
 
 on: 
   workflow_dispatch
 
 jobs:
-  build-windows-x64-d3d11:
+  build-windows-x64:
     runs-on: windows-latest
     steps:
       - name: Checkout sources
@@ -30,19 +30,19 @@ jobs:
         shell: bash
         run: |
           ls -al out/Release
-          mkdir angle-windows-x64-d3d11
-          mkdir angle-windows-x64-d3d11/lib
-          cp -f out/Release/libEGL.dll angle-windows-x64-d3d11/lib/
-          cp -f out/Release/libEGL.dll.lib angle-windows-x64-d3d11/lib/libEGL.lib
-          cp -f out/Release/libGLESv1_CM.dll angle-windows-x64-d3d11/lib/
-          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x64-d3d11/lib/libGLESv1_CM.lib
-          cp -f out/Release/libGLESv2.dll angle-windows-x64-d3d11/lib/
-          cp -f out/Release/libGLESv2.dll.lib angle-windows-x64-d3d11/lib/libGLESv2.lib
-          cp -rf include angle-windows-x64-d3d11/
-          find angle-windows-x64-d3d11 -name ".clang-format" -delete
-          find angle-windows-x64-d3d11 -name "*.md" -delete
+          mkdir angle-windows-x64
+          mkdir angle-windows-x64/lib
+          cp -f out/Release/libEGL.dll angle-windows-x64/lib/
+          cp -f out/Release/libEGL.dll.lib angle-windows-x64/lib/libEGL.lib
+          cp -f out/Release/libGLESv1_CM.dll angle-windows-x64/lib/
+          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x64/lib/libGLESv1_CM.lib
+          cp -f out/Release/libGLESv2.dll angle-windows-x64/lib/
+          cp -f out/Release/libGLESv2.dll.lib angle-windows-x64/lib/libGLESv2.lib
+          cp -rf include angle-windows-x64/
+          find angle-windows-x64 -name ".clang-format" -delete
+          find angle-windows-x64 -name "*.md" -delete
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: angle-windows-x64-d3d11
-          path: angle-windows-x64-d3d11
+          name: angle-windows-x64
+          path: angle-windows-x64
