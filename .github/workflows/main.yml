@@ -25,9 +25,9 @@ jobs:
         run: |
           mkdir angle-darwin-x64
           mkdir angle-darwin-x64/lib
-          cp -f out/Release/libEGL.dylib angle-darwin-x64/lib/
-          cp -f out/Release/libGLESv1_CM.dylib angle-darwin-x64/lib/
-          cp -f out/Release/libGLESv2.dylib angle-darwin-x64/lib/
+          mv -f out/Release/libEGL.dylib angle-darwin-x64/lib/
+          mv -f out/Release/libGLESv1_CM.dylib angle-darwin-x64/lib/
+          mv -f out/Release/libGLESv2.dylib angle-darwin-x64/lib/
           cp -rf include angle-darwin-x64/
           find angle-darwin-x64 -name ".clang-format" -delete
           find angle-darwin-x64 -name "*.md" -delete
@@ -58,9 +58,9 @@ jobs:
         run: |
           mkdir angle-linux-x64
           mkdir angle-linux-x64/lib
-          cp -f out/Release/libEGL.so angle-linux-x64/lib/
-          cp -f out/Release/libGLESv1_CM.so angle-linux-x64/lib/
-          cp -f out/Release/libGLESv2.so angle-linux-x64/lib/
+          mv -f out/Release/libEGL.so angle-linux-x64/lib/
+          mv -f out/Release/libGLESv1_CM.so angle-linux-x64/lib/
+          mv -f out/Release/libGLESv2.so angle-linux-x64/lib/
           cp -rf include angle-linux-x64/
           find angle-linux-x64 -name ".clang-format" -delete
           find angle-linux-x64 -name "*.md" -delete
@@ -97,19 +97,19 @@ jobs:
         run: |
           mkdir angle-windows-x64
           mkdir angle-windows-x64/lib
-          cp -f out/Release/libEGL.dll angle-windows-x64/lib/
-          cp -f out/Release/libEGL.dll.lib angle-windows-x64/lib/libEGL.lib
-          cp -f out/Release/libGLESv1_CM.dll angle-windows-x64/lib/
-          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x64/lib/libGLESv1_CM.lib
-          cp -f out/Release/libGLESv2.dll angle-windows-x64/lib/
-          cp -f out/Release/libGLESv2.dll.lib angle-windows-x64/lib/libGLESv2.lib
-          cp -f out/Release/api-*.dll angle-windows-x64/lib/
-          cp -f out/Release/d3d*.dll angle-windows-x64/lib/
-          cp -f out/Release/msvcp140.dll angle-windows-x64/lib/
-          cp -f out/Release/ucrtbase.dll angle-windows-x64/lib/
-          cp -f out/Release/vccorlib140.dll angle-windows-x64/lib/
-          cp -f out/Release/vcruntime140.dll angle-windows-x64/lib/
-          cp -f out/Release/vcruntime140_1.dll angle-windows-x64/lib/
+          mv -f out/Release/libEGL.dll angle-windows-x64/lib/
+          mv -f out/Release/libEGL.dll.lib angle-windows-x64/lib/libEGL.lib
+          mv -f out/Release/libGLESv1_CM.dll angle-windows-x64/lib/
+          mv -f out/Release/libGLESv1_CM.dll.lib angle-windows-x64/lib/libGLESv1_CM.lib
+          mv -f out/Release/libGLESv2.dll angle-windows-x64/lib/
+          mv -f out/Release/libGLESv2.dll.lib angle-windows-x64/lib/libGLESv2.lib
+          mv -f out/Release/api-*.dll angle-windows-x64/lib/
+          mv -f out/Release/d3d*.dll angle-windows-x64/lib/
+          mv -f out/Release/msvcp140.dll angle-windows-x64/lib/
+          mv -f out/Release/ucrtbase.dll angle-windows-x64/lib/
+          mv -f out/Release/vccorlib140.dll angle-windows-x64/lib/
+          mv -f out/Release/vcruntime140.dll angle-windows-x64/lib/
+          mv -f out/Release/vcruntime140_1.dll angle-windows-x64/lib/
           cp -rf include angle-windows-x64/
           find angle-windows-x64 -name ".clang-format" -delete
           find angle-windows-x64 -name "*.md" -delete
@@ -146,19 +146,19 @@ jobs:
         run: |
           mkdir angle-windows-x86
           mkdir angle-windows-x86/lib
-          cp -f out/Release/libEGL.dll angle-windows-x86/lib/
-          cp -f out/Release/libEGL.dll.lib angle-windows-x86/lib/libEGL.lib
-          cp -f out/Release/libGLESv1_CM.dll angle-windows-x86/lib/
-          cp -f out/Release/libGLESv1_CM.dll.lib angle-windows-x86/lib/libGLESv1_CM.lib
-          cp -f out/Release/libGLESv2.dll angle-windows-x86/lib/
-          cp -f out/Release/libGLESv2.dll.lib angle-windows-x86/lib/libGLESv2.lib
-          cp -f out/Release/api-*.dll angle-windows-x86/lib/
-          cp -f out/Release/d3d*.dll angle-windows-x86/lib/
-          cp -f out/Release/msvcp140.dll angle-windows-x86/lib/
-          cp -f out/Release/ucrtbase.dll angle-windows-x86/lib/
-          cp -f out/Release/vccorlib140.dll angle-windows-x86/lib/
-          cp -f out/Release/vcruntime140.dll angle-windows-x86/lib/
-          cp -f out/Release/vcruntime140_1.dll angle-windows-x86/lib/
+          mv -f out/Release/libEGL.dll angle-windows-x86/lib/
+          mv -f out/Release/libEGL.dll.lib angle-windows-x86/lib/libEGL.lib
+          mv -f out/Release/libGLESv1_CM.dll angle-windows-x86/lib/
+          mv -f out/Release/libGLESv1_CM.dll.lib angle-windows-x86/lib/libGLESv1_CM.lib
+          mv -f out/Release/libGLESv2.dll angle-windows-x86/lib/
+          mv -f out/Release/libGLESv2.dll.lib angle-windows-x86/lib/libGLESv2.lib
+          mv -f out/Release/api-*.dll angle-windows-x86/lib/
+          mv -f out/Release/d3d*.dll angle-windows-x86/lib/
+          mv -f out/Release/msvcp140.dll angle-windows-x86/lib/
+          mv -f out/Release/ucrtbase.dll angle-windows-x86/lib/
+          mv -f out/Release/vccorlib140.dll angle-windows-x86/lib/
+          mv -f out/Release/vcruntime140.dll angle-windows-x86/lib/
+          mv -f out/Release/vcruntime140_1.dll angle-windows-x86/lib/
           cp -rf include angle-windows-x86/
           find angle-windows-x86 -name ".clang-format" -delete
           find angle-windows-x86 -name "*.md" -delete
@@ -195,19 +195,19 @@ jobs:
         run: |
           mkdir angle-winuwp-x64
           mkdir angle-winuwp-x64/lib
-          cp -f out/Release/libEGL.dll angle-winuwp-x64/lib/
-          cp -f out/Release/libEGL.dll.lib angle-winuwp-x64/lib/libEGL.lib
-          cp -f out/Release/libGLESv1_CM.dll angle-winuwp-x64/lib/
-          cp -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x64/lib/libGLESv1_CM.lib
-          cp -f out/Release/libGLESv2.dll angle-winuwp-x64/lib/
-          cp -f out/Release/libGLESv2.dll.lib angle-winuwp-x64/lib/libGLESv2.lib
-          cp -f out/Release/api-*.dll angle-winuwp-x64/lib/
-          cp -f out/Release/d3d*.dll angle-winuwp-x64/lib/
-          cp -f out/Release/msvcp140.dll angle-winuwp-x64/lib/
-          cp -f out/Release/ucrtbase.dll angle-winuwp-x64/lib/
-          cp -f out/Release/vccorlib140.dll angle-winuwp-x64/lib/
-          cp -f out/Release/vcruntime140.dll angle-winuwp-x64/lib/
-          cp -f out/Release/vcruntime140_1.dll angle-winuwp-x64/lib/
+          mv -f out/Release/libEGL.dll angle-winuwp-x64/lib/
+          mv -f out/Release/libEGL.dll.lib angle-winuwp-x64/lib/libEGL.lib
+          mv -f out/Release/libGLESv1_CM.dll angle-winuwp-x64/lib/
+          mv -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x64/lib/libGLESv1_CM.lib
+          mv -f out/Release/libGLESv2.dll angle-winuwp-x64/lib/
+          mv -f out/Release/libGLESv2.dll.lib angle-winuwp-x64/lib/libGLESv2.lib
+          mv -f out/Release/api-*.dll angle-winuwp-x64/lib/
+          mv -f out/Release/d3d*.dll angle-winuwp-x64/lib/
+          mv -f out/Release/msvcp140.dll angle-winuwp-x64/lib/
+          mv -f out/Release/ucrtbase.dll angle-winuwp-x64/lib/
+          mv -f out/Release/vccorlib140.dll angle-winuwp-x64/lib/
+          mv -f out/Release/vcruntime140.dll angle-winuwp-x64/lib/
+          mv -f out/Release/vcruntime140_1.dll angle-winuwp-x64/lib/
           cp -rf include angle-winuwp-x64/
           find angle-winuwp-x64 -name ".clang-format" -delete
           find angle-winuwp-x64 -name "*.md" -delete
@@ -244,19 +244,19 @@ jobs:
         run: |
           mkdir angle-winuwp-x86
           mkdir angle-winuwp-x86/lib
-          cp -f out/Release/libEGL.dll angle-winuwp-x86/lib/
-          cp -f out/Release/libEGL.dll.lib angle-winuwp-x86/lib/libEGL.lib
-          cp -f out/Release/libGLESv1_CM.dll angle-winuwp-x86/lib/
-          cp -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x86/lib/libGLESv1_CM.lib
-          cp -f out/Release/libGLESv2.dll angle-winuwp-x86/lib/
-          cp -f out/Release/libGLESv2.dll.lib angle-winuwp-x86/lib/libGLESv2.lib
-          cp -f out/Release/api-*.dll angle-winuwp-x86/lib/
-          cp -f out/Release/d3d*.dll angle-winuwp-x86/lib/
-          cp -f out/Release/msvcp140.dll angle-winuwp-x86/lib/
-          cp -f out/Release/ucrtbase.dll angle-winuwp-x86/lib/
-          cp -f out/Release/vccorlib140.dll angle-winuwp-x86/lib/
-          cp -f out/Release/vcruntime140.dll angle-winuwp-x86/lib/
-          cp -f out/Release/vcruntime140_1.dll angle-winuwp-x86/lib/
+          mv -f out/Release/libEGL.dll angle-winuwp-x86/lib/
+          mv -f out/Release/libEGL.dll.lib angle-winuwp-x86/lib/libEGL.lib
+          mv -f out/Release/libGLESv1_CM.dll angle-winuwp-x86/lib/
+          mv -f out/Release/libGLESv1_CM.dll.lib angle-winuwp-x86/lib/libGLESv1_CM.lib
+          mv -f out/Release/libGLESv2.dll angle-winuwp-x86/lib/
+          mv -f out/Release/libGLESv2.dll.lib angle-winuwp-x86/lib/libGLESv2.lib
+          mv -f out/Release/api-*.dll angle-winuwp-x86/lib/
+          mv -f out/Release/d3d*.dll angle-winuwp-x86/lib/
+          mv -f out/Release/msvcp140.dll angle-winuwp-x86/lib/
+          mv -f out/Release/ucrtbase.dll angle-winuwp-x86/lib/
+          mv -f out/Release/vccorlib140.dll angle-winuwp-x86/lib/
+          mv -f out/Release/vcruntime140.dll angle-winuwp-x86/lib/
+          mv -f out/Release/vcruntime140_1.dll angle-winuwp-x86/lib/
           cp -rf include angle-winuwp-x86/
           find angle-winuwp-x86 -name ".clang-format" -delete
           find angle-winuwp-x86 -name "*.md" -delete
