@@ -24,12 +24,12 @@ jobs:
           set DEPOT_TOOLS_WIN_TOOLCHAIN=0
           set vs2019_install=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
           set WINDOWSSDKDIR=C:\Program Files (x86)\Windows Kits\10
-          gclient
-          python scripts/bootstrap.py
-          gclient sync
-          gn gen out/Release
-          gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
-          autoninja -C out/Release
+          cmd /c gclient
+          cmd /c python scripts/bootstrap.py
+          cmd /c gclient sync
+          cmd /c gn gen out/Release
+          cmd /c gn args out/Release --list --short --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
+          cmd /c autoninja -C out/Release
       - name: Pack
         shell: bash
         run: |
