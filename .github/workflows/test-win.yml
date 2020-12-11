@@ -11,13 +11,8 @@ jobs:
         run: |
           git clone https://github.com/google/angle .
       - name: Fetch depot_tools
-        shell: bash
         run: |
-          curl -ksS https://storage.googleapis.com/chrome-infra/depot_tools.zip > depot_tools.zip
-          mkdir depot_tools
-          unzip -q -o depot_tools.zip -d depot_tools
-          rm -f depot_tools.zip
-          ls -al depot_tools
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
       - name: Build
         shell: cmd
         run: |
