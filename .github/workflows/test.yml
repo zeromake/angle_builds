@@ -30,9 +30,10 @@ jobs:
         run: |
           ls -al out/Release
           mkdir angle-windows-x64
-          mkdir angle-windows-x64/lib
-          mv -f out/Release/*.dll angle-windows-x64/lib/
-          mv -f out/Release/*.dll.lib angle-windows-x64/lib/
+          mkdir angle-windows-x64/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-windows-x64/dist/
           cp -rf include angle-windows-x64/
           find angle-windows-x64 -name ".clang-format" -delete
           find angle-windows-x64 -name "*.md" -delete

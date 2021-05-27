@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-darwin-x64:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout sources
         run: |
@@ -23,8 +23,10 @@ jobs:
       - name: Pack
         run: |
           mkdir angle-darwin-x64
-          mkdir angle-darwin-x64/lib
-          mv -f out/Release/*.dylib angle-darwin-x64/lib/
+          mkdir angle-darwin-x64/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-darwin-x64/dist/
           cp -rf include angle-darwin-x64/
           find angle-darwin-x64 -name ".clang-format" -delete
           find angle-darwin-x64 -name "*.md" -delete
@@ -53,8 +55,10 @@ jobs:
       - name: Pack
         run: |
           mkdir angle-linux-x64
-          mkdir angle-linux-x64/lib
-          mv -f out/Release/*.so angle-linux-x64/lib/
+          mkdir angle-linux-x64/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-linux-x64/dist/
           cp -rf include angle-linux-x64/
           find angle-linux-x64 -name ".clang-format" -delete
           find angle-linux-x64 -name "*.md" -delete
@@ -89,9 +93,10 @@ jobs:
         shell: bash
         run: |
           mkdir angle-windows-x64
-          mkdir angle-windows-x64/lib
-          mv -f out/Release/*.dll angle-windows-x64/lib/
-          mv -f out/Release/*.dll.lib angle-windows-x64/lib/
+          mkdir angle-windows-x64/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-windows-x64/dist/
           cp -rf include angle-windows-x64/
           find angle-windows-x64 -name ".clang-format" -delete
           find angle-windows-x64 -name "*.md" -delete
@@ -126,9 +131,10 @@ jobs:
         shell: bash
         run: |
           mkdir angle-windows-x86
-          mkdir angle-windows-x86/lib
-          mv -f out/Release/*.dll angle-windows-x86/lib/
-          mv -f out/Release/*.dll.lib angle-windows-x86/lib/
+          mkdir angle-windows-x86/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-windows-x86/dist/
           cp -rf include angle-windows-x86/
           find angle-windows-x86 -name ".clang-format" -delete
           find angle-windows-x86 -name "*.md" -delete
@@ -163,9 +169,10 @@ jobs:
         shell: bash
         run: |
           mkdir angle-winuwp-x64
-          mkdir angle-winuwp-x64/lib
-          mv -f out/Release/*.dll angle-winuwp-x64/lib/
-          mv -f out/Release/*.dll.lib angle-winuwp-x64/lib/
+          mkdir angle-winuwp-x64/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-winuwp-x64/dist/
           cp -rf include angle-winuwp-x64/
           find angle-winuwp-x64 -name ".clang-format" -delete
           find angle-winuwp-x64 -name "*.md" -delete
@@ -200,9 +207,10 @@ jobs:
         shell: bash
         run: |
           mkdir angle-winuwp-x86
-          mkdir angle-winuwp-x86/lib
-          mv -f out/Release/*.dll angle-winuwp-x86/lib/
-          mv -f out/Release/*.dll.lib angle-winuwp-x86/lib/
+          mkdir angle-winuwp-x86/dist
+          rm -rf out/Release/gen
+          rm -rf out/Release/obj
+          mv -f out/Release/* angle-winuwp-x86/dist/
           cp -rf include angle-winuwp-x86/
           find angle-winuwp-x86 -name ".clang-format" -delete
           find angle-winuwp-x86 -name "*.md" -delete
