@@ -1,7 +1,6 @@
 name: winuwp-x64
 
 on: 
-  workflow_dispatch:
   push:
     branches: [ master ]
   pull_request:
