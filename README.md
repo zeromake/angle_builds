@@ -2,7 +2,7 @@
 
 Build google angle automatically with github actions.
 
-You can download it on [Actions](https://github.com/xiaozhuai/angle_builds/actions) page.
+You can download binaries on [Actions](https://github.com/xiaozhuai/angle_builds/actions) page.
 
 [![linux-x64](https://github.com/xiaozhuai/angle_builds/workflows/linux-x64/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Alinux-x64)
 
