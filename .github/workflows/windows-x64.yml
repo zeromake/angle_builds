@@ -35,8 +35,15 @@ jobs:
         run: |
           mkdir angle-windows-x64
           mkdir angle-windows-x64/dist
+          rm -rf out/Release/cdb
           rm -rf out/Release/gen
           rm -rf out/Release/obj
+          rm -rf out/Release/args.gn
+          rm -rf out/Release/build.ninja
+          rm -rf out/Release/build.ninja.d
+          rm -rf out/Release/toolchain.ninja
+          rm -rf out/Release/environment.*
+          find out/Release -name "*.pdb" -delete
           mv -f out/Release/* angle-windows-x64/dist/
           cp -rf include angle-windows-x64/
           find angle-windows-x64 -name ".clang-format" -delete
