@@ -2,16 +2,16 @@
 
 Build google angle automatically with github actions.
 
-You can download binaries on [Actions](https://github.com/xiaozhuai/angle_builds/actions) page.
+Download binaries on [Actions](https://github.com/xiaozhuai/angle_builds/actions) page.
 
-[![linux-x64](https://github.com/xiaozhuai/angle_builds/workflows/linux-x64/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Alinux-x64)
+[![linux-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/linux-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/linux-x64.yml)
 
-[![macos-x64](https://github.com/xiaozhuai/angle_builds/workflows/macos-x64/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Amacos-x64)
+[![macos-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/macos-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/macos-x64.yml)
 
-[![windows-x64](https://github.com/xiaozhuai/angle_builds/workflows/windows-x64/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Awindows-x64)
+[![windows-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64.yml)
 
-[![windows-x86](https://github.com/xiaozhuai/angle_builds/workflows/windows-x86/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Awindows-x86)
+[![windows-x86](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86.yml)
 
-[![winuwp-x64](https://github.com/xiaozhuai/angle_builds/workflows/winuwp-x64/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Awinuwp-x64)
+[![winuwp-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x64.yml)
 
-[![winuwp-x86](https://github.com/xiaozhuai/angle_builds/workflows/winuwp-x86/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions?query=workflow%3Awinuwp-x86)
+[![winuwp-x86](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x86.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x86.yml)

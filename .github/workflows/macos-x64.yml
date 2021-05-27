@@ -5,6 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   build-macos-x64:
@@ -21,7 +23,7 @@ jobs:
           export PATH="$(pwd)/depot_tools:$PATH"
           python scripts/bootstrap.py
           gclient sync
-          gn gen out/Release --args="is_debug=false target_cpu=\"x64\" build_angle_deqp_tests=false"
+          gn gen out/Release --args="is_debug=false target_cpu=\"x64\" angle_build_all=false"
           autoninja -C out/Release
       - name: Pack
         run: |
