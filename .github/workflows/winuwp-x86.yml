@@ -28,7 +28,7 @@ jobs:
           cmd /c gclient
           cmd /c python scripts/bootstrap.py
           cmd /c gclient sync
-          cmd /c gn gen out/Release --args="is_debug=false target_cpu=\"x86\" target_os=\"winuwp\" angle_build_all=false"
+          cmd /c gn gen out/Release --args="is_debug=false is_clang=false target_cpu=\"x86\" target_os=\"winuwp\" angle_build_all=false"
           cmd /c autoninja -C out/Release
       - name: Pack
         shell: bash
