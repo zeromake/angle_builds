@@ -28,7 +28,7 @@ jobs:
           cmd /c gclient
           cmd /c python scripts/bootstrap.py
           cmd /c gclient sync
-          cmd /c gn gen out/Debug --args="is_debug=ture target_cpu=\"x64\" angle_build_all=false"
+          cmd /c gn gen out/Debug --args="is_debug=true target_cpu=\"x64\" angle_build_all=false"
           cmd /c autoninja -C out/Debug
       - name: Pack
         shell: bash
@@ -43,7 +43,6 @@ jobs:
           rm -rf out/Debug/build.ninja.d
           rm -rf out/Debug/toolchain.ninja
           rm -rf out/Debug/environment.*
-          find out/Debug -name "*.pdb" -delete
           mv -f out/Debug/* angle-windows-x64/dist/
           cp -rf include angle-windows-x64/
           find angle-windows-x64 -name ".clang-format" -delete
