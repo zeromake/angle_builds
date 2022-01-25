@@ -11,7 +11,11 @@ Download binaries on [Actions](https://github.com/xiaozhuai/angle_builds/actions
 
 [![windows-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64.yml)
 
+[![windows-x64-debug](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64-debug.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x64-debug.yml)
+
 [![windows-x86](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86.yml)
+
+[![windows-x86-debug](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86-debug.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/windows-x86-debug.yml)
 
 [![winuwp-x64](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x64.yml/badge.svg)](https://github.com/xiaozhuai/angle_builds/actions/workflows/winuwp-x64.yml)
 
