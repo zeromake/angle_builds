@@ -8,14 +8,16 @@ on:
   schedule:
     - cron: '0 0 * * 0'
 
+# https://github.com/GuillaumeFalourd/setup-windows10-sdk-action/issues/3
+
 jobs:
   build-windows-x86:
     runs-on: windows-latest
     steps:
       - name: Setup Windows 10 SDK version 10.0.20348.0
-        uses: fbactions/setup-winsdk@v1
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@dev
         with:
-          winsdk-build-version: 20348
+          sdk-version: 20348
       - name: Checkout sources
         run: |
           git clone https://github.com/google/angle .
